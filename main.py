@@ -41,49 +41,36 @@ def signup_complete():
     #template = jinja_env.get_template('welcome.html')
     # THESE ARE FUNCTIONS FOR THE VALIDATIONS
     
-    if username == '':
+    if len(username) < 3 or len(username) > 20 or " " in username:
         username_error = 'Username must been 3 or more 20'
-        username = ''
-    elif len(username) < 3 or len(username) > 20:
-        username_error = 'Username is Invaild'
-        username = ''
-    else:
-        if '' in username:
-            username_error = 'Username is Invaild'
-            username = ''
     
-    if password == '':
-        password_error = 'Password must match'
-        password = ''
-    elif len(password) < 3 or len(username) > 20:
+
+    if len(password) < 3 or len(username) > 20 or " " in password:
         password_error = 'Password is Invaild'
         password = ''
-    else:
-        if '' in password:
-            password_error = 'Password is Invaild'
-            password = ''
 
     if password  != verify:
         verify_error = 'Confirm password cannot be empty'
         verify = ''
     
-    if len(email) == 0:
+    if len(email) > 1:
         email_error = ''
         email = ''
-    elif len(email) < 3 or len(username) > 20:
-        email_error = 'Email is Invaild'
-        email = ''
     
-    if not username_error and not password_error and not verify_error and not email_error:
-        return render_template( 'Welcome' + 'username' + '!')
-    else:
+        if len(email) < 3 or len(email) > 20:
+            email_error = 'Email is Invaild'
+            email = ''
+    
+    if username_error or password_error or verify_error or email_error:
         return render_template('signup.html', username=username, username_error=username_error, password_error=password_error, verify_error=verify_error, email_error=email_error)
+    else:
+        return render_template('welcome.html', username=username)
 
-@app.route('/welcome' , methods=['GET'])
+"""@app.route('/welcome', methods=['GET'])
 def welcome():
     username = request.args.get('username')
     #template = jinja_env.get_template('welcome.html')
-    return render_template("/welcome.html", username=username)
+    return render_template("/welcome.html", username=username)"""
 
 #if __name__ == '__main__':
 app.run()
