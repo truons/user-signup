@@ -1,0 +1,40 @@
+<!--{% extends "base.html" %}
+
+{% block conent %}-->
+
+<!Doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <style>
+            .error{color:red;}
+        </style>
+    </head>
+    <body>
+        
+<h1>Signup</h1>
+<form action="/signup" method='post'>
+        
+    <label for="username">Username</label>
+        <input name = "username" type="text" value ='{{username}}'/>
+        <span class='error'>{{user_error}}</span><br>
+        
+    <label for="password">Password</label>
+        <input name = "password" type = "password" value='{{password}}'/>
+        <span class="error">{{password_error}}</span><br>
+        
+    <label for="verify">Verify Password</label>
+        <input name = "verify" type = "password" value='{{verify}}'/>
+        <span class="error">{{verify_error}}</span><br>
+       
+    </label for="email">Email (optional)</label>
+        <input name = "email" type= "text" value='{{email}}'/>
+        <span class= 'error'>{{Optional}}></span><br>
+    
+    <input class="submit-button" type = "submit" value="Submit"/>
+        
+    </form>
+</body>
+</html>
+    
+    
